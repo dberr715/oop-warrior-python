@@ -6,32 +6,84 @@ class Warrior:
         self.power = power
 
     def greet(self):
-        print(f"You selected {Warrior.characterName}")
+        print(f"You selected {self.characterName}")
 
     def alive(self):
         if self.health > 0:
-            print(f"{Warrior.character_name} is alive and has {Warrior.health} health points")
+            print(
+                f"\n{self.character_name} is alive and has {self.health} health points"
+            )
+            return self.health
 
     def attack(self, other_character):
         other_character.health -= self.power
         print(
-            f"{self.character_name} attacks {other_character.character_name} for {self.power} damage"
+            f"\n\n{self.character_name} attacks {other_character.character_name} for {self.power} damage"
         )
+
+        if other_character.health <= 0:
+            print(f"{other_character.character_name} is DEAD")
+            print("/////////////////////////////////////////\n")
 
 
 class Hero(Warrior):
-    def announce(self):
+    def announce(self, villain):
         print(
-            f"Prepare to be defeated, {Villain.character_name} by the mighty hand of {Hero.character_name}!"
+            f" {hero.character_name} says: You will be defeated, {villain.character_name}, by the mighty hand of {self.character_name}!"
         )
+        print("/////////////////////////////////////////\n")
 
 
 class Villain(Warrior):
-    def taunt(self):
-        print(f"You are no match for me {Hero.character_name}!")
+    def taunt(self, hero):
+        print(
+            f"{villain.character_name} says: You are no match for me {hero.character_name}!"
+        )
+        print("/////////////////////////////////////////\n")
 
 
-
-
+##########INSTANTIATE VILLAIN AND HERO
 villain = Villain("Dr. Evil", "Needs 1 MILLLLLLION dollars", 25, 5)
 hero = Hero("Austin Powers", "Shagadellic, BABY!", 25, 10)
+
+
+while hero.alive() and villain.alive():
+    print("\n\n\n/////////////////////////////////////////")
+    print(f"HERO HEALTH: {hero.health}")
+    print(f"VILLAIN HEALTH: {villain.health} ")
+    print("///////////CHOOSE THE NEXT STEP///////////////\n")
+    print("f: attack villain with hero")
+    print("a: attack hero with villain")
+    print("s: you want to give up, so you run away")
+    print("n: be a pacifist, but still stay")
+    print("v: have villain taunt hero")
+    print("h: have hero posture against villain\n")
+    print("/////////////////////////////////////////\n")
+    print("TYPE NEW INPUT BELOW")
+
+    user_input = input()
+    if user_input == "f":
+        hero.attack(villain)
+    elif user_input == "a":
+        villain.attack(hero)
+    elif user_input == "s":
+        print("I thought you were better than that!")
+        print("/////////////////////////////////////////\n")
+        break
+    elif user_input == "n":
+        print(f"{hero.character_name} chooses not to fight.")
+        villain.attack(hero)
+        print(
+            f"Can you believe {villain.character_name} still hits {hero.character_name}?  HOW RUDE?!?!"
+        )
+        print("/////////////////////////////////////////\n")
+    elif user_input == "v":
+        villain.taunt(hero)
+
+    elif user_input == "h":
+        hero.announce(villain)
+
+    else:
+        print("!!!!!!Please type a correct command!!!!!!")
+        print("Options are:  'f', 'a', 's', 'n', 'v', 'h'")
+        print("/////////////////////////////////////////\n")
