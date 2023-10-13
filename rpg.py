@@ -42,15 +42,19 @@ class Villain(Warrior):
         print("/////////////////////////////////////////\n")
 
 
+hero_input = input("Type your Hero name: ")
+villain_input = input("Type your Villain name:  ")
+
+
 ##########INSTANTIATE VILLAIN AND HERO
-villain = Villain("Dr. Evil", "Needs 1 MILLLLLLION dollars", 25, 5)
-hero = Hero("Austin Powers", "Shagadellic, BABY!", 25, 10)
+villain = Villain(villain_input.upper(), "Needs 1 MILLLLLLION dollars", 25, 5)
+hero = Hero(hero_input.upper(), "Shagadellic, BABY!", 25, 10)
 
 
 while hero.alive() and villain.alive():
     print("\n\n\n/////////////////////////////////////////")
-    print(f"HERO HEALTH: {hero.health}")
-    print(f"VILLAIN HEALTH: {villain.health} ")
+    print(f"{hero.character_name} HEALTH: {hero.health}")
+    print(f"{villain.character_name} HEALTH: {villain.health} ")
     print("///////////CHOOSE THE NEXT STEP///////////////\n")
     print("f: attack villain with hero")
     print("a: attack hero with villain")
