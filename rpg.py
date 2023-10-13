@@ -1,3 +1,6 @@
+import random
+
+
 class Warrior:
     def __init__(self, character_name, details, health, power):
         self.character_name = character_name
@@ -16,10 +19,14 @@ class Warrior:
             return self.health
 
     def attack(self, other_character):
-        other_character.health -= self.power
-        print(
-            f"\n\n{self.character_name} attacks {other_character.character_name} for {self.power} damage"
-        )
+        if self.power % 2 == 1:
+            print("MISSED! Lucky for you!")
+        else:
+            random_power = random.randint(1, self.power)
+            other_character.health -= random_power
+            print(
+                f"\n\n{self.character_name} attacks {other_character.character_name} for {random_power} damage"
+            )
 
         if other_character.health <= 0:
             print(f"{other_character.character_name} is DEAD")
@@ -47,7 +54,7 @@ villain_input = input("Type your Villain name:  ")
 
 
 ##########INSTANTIATE VILLAIN AND HERO
-villain = Villain(villain_input.upper(), "Needs 1 MILLLLLLION dollars", 25, 5)
+villain = Villain(villain_input.upper(), "Needs 1 MILLLLLLION dollars", 25, 10)
 hero = Hero(hero_input.upper(), "Shagadellic, BABY!", 25, 10)
 
 
